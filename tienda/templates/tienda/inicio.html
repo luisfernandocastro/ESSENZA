@@ -1,0 +1,36 @@
+{% extends 'tienda/base.html' %}
+{% block contenido %}
+<div class="hero">
+  <h1>Essenza</h1>
+  <p>El arte de encontrar tu perfume</p>
+</div>
+
+<h2>Los más vendidos</h2>
+<div class="grid">
+  {% for p in top_perfumes %}
+  <div class="card">
+    {% if p.imagen %}<img src="{{ p.imagen.url }}" alt="{{ p.nombre }}">{% else %}<div class="img-ph">✿</div>{% endif %}
+    <h3>{{ p.nombre }}</h3>
+    <p class="marca">{{ p.marca }}</p>
+    <p class="precio">$ {{ p.precio }}</p>
+    <p class="meta">{{ p.ventas }} ventas</p>
+  </div>
+  {% empty %}<p>No hay perfumes cargados aún.</p>{% endfor %}
+</div>
+
+<h2>Perfumerías más vendidas</h2>
+<table>
+  <tr><th>#</th><th>Perfumería</th><th>Ciudad</th><th>Ventas totales</th></tr>
+  {% for t in top_perfumerias %}
+  <tr><td>{{ forloop.counter }}</td><td>{{ t.nombre }}</td><td>{{ t.ciudad }}</td><td>{{ t.ventas_totales }}</td></tr>
+  {% empty %}<tr><td colspan="4">Sin datos.</td></tr>{% endfor %}
+</table>
+
+<h2>Reseñas recientes</h2>
+{% for r in resenas %}
+<div class="resena">
+  <strong>{{ r.nombre }}</strong> <span class="estrellas">{% for i in "*****" %}{% if forloop.counter <= r.puntuacion %}★{% else %}☆{% endif %}{% endfor %}</span>
+  <p>{{ r.comentario }}</p>
+</div>
+{% empty %}<p>Aún no hay reseñas.</p>{% endfor %}
+{% endblock %}

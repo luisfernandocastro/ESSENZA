@@ -1,0 +1,16 @@
+{% extends 'tienda/base.html' %}
+{% block contenido %}
+<h1>Reseñas</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Publicar reseña</button>
+</form>
+<h2>Opiniones</h2>
+{% for r in resenas %}
+<div class="resena">
+  <strong>{{ r.nombre }}</strong> — {{ r.fecha|date:"d/m/Y" }} <span class="estrellas">{% for i in "*****" %}{% if forloop.counter <= r.puntuacion %}★{% else %}☆{% endif %}{% endfor %}</span>
+  <p>{{ r.comentario }}</p>
+</div>
+{% empty %}<p>Aún no hay reseñas.</p>{% endfor %}
+{% endblock %}

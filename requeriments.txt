@@ -1,3 +1,0 @@
-// requerimientos
-
-pip install pillow

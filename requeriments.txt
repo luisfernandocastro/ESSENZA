@@ -1,1 +1,3 @@
 // requerimientos
+
+pip install pillow

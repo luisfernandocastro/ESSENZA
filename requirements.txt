@@ -1,1 +1,1 @@
-pip install pillow = 12.3.0
+// pip install pillow = 12.3.0
